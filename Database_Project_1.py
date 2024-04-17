@@ -204,3 +204,24 @@ def display_courses():
             messagebox.showinfo("Courses", "\n".join([str(course) for course in courses]))
     except mysql.connector.Error as error:
         messagebox.showerror("Error", f"Failed to fetch course records: {error}")
+
+def update_course():
+    course_id = course_id_entry.get()
+    course_name = course_name_entry.get()
+    instructor = instructor_entry.get()
+    semester = semester_entry.get()
+    
+    if not (course_id and course_name and instructor and semester):
+        messagebox.showerror("Error", "All fields are required.")
+        return
+    
+    try:
+        connection = connect_to_database()
+        if connection:
+            cursor = connection.cursor()
+            cursor.execute("UPDATE courses SET CourseName=%s, Instructor=%s, Semester=%s WHERE CourseID=%s", (course_name, instructor, semester, course_id))
+            connection.commit()
+            messagebox.showinfo("Success", "Course record updated successfully.")
+            connection.close()
+    except mysql.connector.Error as error:
+        messagebox.showerror("Error", f"Failed to update course record: {error}")
