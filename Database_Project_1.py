@@ -154,3 +154,21 @@ def update_grade():
     except mysql.connector.Error as error:
         messagebox.showerror("Error", f"Failed to update grade record: {error}")
 
+def delete_grade():
+    grade_id = grade_id_entry.get()
+    
+    if not grade_id:
+        messagebox.showerror("Error", "Please enter a Grade ID.")
+        return
+    
+    try:
+        connection = connect_to_database()
+        if connection:
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM grades WHERE GradeID=%s", (grade_id,))
+            connection.commit()
+            messagebox.showinfo("Success", "Grade record deleted successfully.")
+            connection.close()
+    except mysql.connector.Error as error:
+        messagebox.showerror("Error", f"Failed to delete grade record: {error}")
+
