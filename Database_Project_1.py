@@ -225,3 +225,21 @@ def update_course():
             connection.close()
     except mysql.connector.Error as error:
         messagebox.showerror("Error", f"Failed to update course record: {error}")
+
+def delete_course():
+    course_id = course_id_entry.get()
+    
+    if not course_id:
+        messagebox.showerror("Error", "Please enter a Course ID.")
+        return
+    
+    try:
+        connection = connect_to_database()
+        if connection:
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM courses WHERE CourseID=%s", (course_id,))
+            connection.commit()
+            messagebox.showinfo("Success", "Course record deleted successfully.")
+            connection.close()
+    except mysql.connector.Error as error:
+        messagebox.showerror("Error", f"Failed to delete course record: {error}")
