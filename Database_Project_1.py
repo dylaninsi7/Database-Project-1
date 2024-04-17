@@ -310,3 +310,37 @@ update_grade_button.grid(row=11, column=0, padx=10, pady=5)
 
 delete_grade_button = tk.Button(root, text="Delete Grade", command=delete_grade)
 delete_grade_button.grid(row=11, column=1, padx=10, pady=5)
+
+course_id_label = tk.Label(root, text="Course ID:")
+course_id_label.grid(row=12, column=0, padx=10, pady=5)
+course_id_entry = tk.Entry(root)
+course_id_entry.grid(row=12, column=1, padx=10, pady=5)
+
+course_name_label = tk.Label(root, text="Course Name:")
+course_name_label.grid(row=13, column=0, padx=10, pady=5)
+course_name_entry = tk.Entry(root)
+course_name_entry.grid(row=13, column=1, padx=10, pady=5)
+
+instructor_label = tk.Label(root, text="Instructor:")
+instructor_label.grid(row=14, column=0, padx=10, pady=5)
+instructor_entry = tk.Entry(root)
+instructor_entry.grid(row=14, column=1, padx=10, pady=5)
+
+semester_label = tk.Label(root, text="Semester:")
+semester_label.grid(row=15, column=0, padx=10, pady=5)
+semester_entry = tk.Entry(root)
+semester_entry.grid(row=15, column=1, padx=10, pady=5)
+
+insert_course_button = tk.Button(root, text="Insert Course", command=insert_course)
+insert_course_button.grid(row=16, column=0, padx=10, pady=5)
+
+display_courses_button = tk.Button(root, text="Display Courses", command=display_courses)
+display_courses_button.grid(row=16, column=1, padx=10, pady=5)
+
+update_course_button = tk.Button(root, text="Update Course", command=update_course)
+update_course_button.grid(row=17, column=0, padx=10, pady=5)
+
+delete_course_button = tk.Button(root, text="Delete Course", command=delete_course)
+delete_course_button.grid(row=17, column=1, padx=10, pady=5)
+
+root.mainloop()
