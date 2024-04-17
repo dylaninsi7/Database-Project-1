@@ -132,3 +132,25 @@ def display_grades():
             messagebox.showinfo("Grades", "\n".join([str(grade) for grade in grades]))
     except mysql.connector.Error as error:
         messagebox.showerror("Error", f"Failed to fetch grade records: {error}")
+
+def update_grade():
+    grade_id = grade_id_entry.get()
+    grade = grade_entry.get()
+    student_id = student_id_grade_entry.get()
+    course_id = course_id_grade_entry.get()
+    
+    if not (grade_id and grade and student_id and course_id):
+        messagebox.showerror("Error", "All fields are required.")
+        return
+    
+    try:
+        connection = connect_to_database()
+        if connection:
+            cursor = connection.cursor()
+            cursor.execute("UPDATE grades SET Grade=%s, StudentID=%s, CourseID=%s WHERE GradeID=%s", (grade, student_id, course_id, grade_id))
+            connection.commit()
+            messagebox.showinfo("Success", "Grade record updated successfully.")
+            connection.close()
+    except mysql.connector.Error as error:
+        messagebox.showerror("Error", f"Failed to update grade record: {error}")
+
