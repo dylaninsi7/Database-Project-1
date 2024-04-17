@@ -278,3 +278,35 @@ update_student_button.grid(row=5, column=0, padx=10, pady=5)
 
 delete_student_button = tk.Button(root, text="Delete Student", command=delete_student)
 delete_student_button.grid(row=5, column=1, padx=10, pady=5)
+
+grade_id_label = tk.Label(root, text="Grade ID:")
+grade_id_label.grid(row=6, column=0, padx=10, pady=5)
+grade_id_entry = tk.Entry(root)
+grade_id_entry.grid(row=6, column=1, padx=10, pady=5)
+
+grade_label = tk.Label(root, text="Grade:")
+grade_label.grid(row=7, column=0, padx=10, pady=5)
+grade_entry = tk.Entry(root)
+grade_entry.grid(row=7, column=1, padx=10, pady=5)
+
+student_id_grade_label = tk.Label(root, text="Student ID:")
+student_id_grade_label.grid(row=8, column=0, padx=10, pady=5)
+student_id_grade_entry = tk.Entry(root)
+student_id_grade_entry.grid(row=8, column=1, padx=10, pady=5)
+
+course_id_grade_label = tk.Label(root, text="Course ID:")
+course_id_grade_label.grid(row=9, column=0, padx=10, pady=5)
+course_id_grade_entry = tk.Entry(root)
+course_id_grade_entry.grid(row=9, column=1, padx=10, pady=5)
+
+insert_grade_button = tk.Button(root, text="Insert Grade", command=insert_grade)
+insert_grade_button.grid(row=10, column=0, padx=10, pady=5)
+
+display_grades_button = tk.Button(root, text="Display Grades", command=display_grades)
+display_grades_button.grid(row=10, column=1, padx=10, pady=5)
+
+update_grade_button = tk.Button(root, text="Update Grade", command=update_grade)
+update_grade_button.grid(row=11, column=0, padx=10, pady=5)
+
+delete_grade_button = tk.Button(root, text="Delete Grade", command=delete_grade)
+delete_grade_button.grid(row=11, column=1, padx=10, pady=5)
