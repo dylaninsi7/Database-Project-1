@@ -172,3 +172,24 @@ def delete_grade():
     except mysql.connector.Error as error:
         messagebox.showerror("Error", f"Failed to delete grade record: {error}")
 
+def insert_course():
+    course_id = course_id_entry.get()
+    course_name = course_name_entry.get()
+    instructor = instructor_entry.get()
+    semester = semester_entry.get()
+    
+    if not (course_id and course_name and instructor and semester):
+        messagebox.showerror("Error", "All fields are required.")
+        return
+    
+    try:
+        connection = connect_to_database()
+        if connection:
+            cursor = connection.cursor()
+            cursor.execute("INSERT INTO courses (CourseID, CourseName, Instructor, Semester) VALUES (%s, %s, %s, %s)", (course_id, course_name, instructor, semester))
+            connection.commit()
+            messagebox.showinfo("Success", "Course record inserted successfully.")
+            connection.close()
+    except mysql.connector.Error as error:
+        messagebox.showerror("Error", f"Failed to insert course record: {error}")
+
