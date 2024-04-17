@@ -60,3 +60,24 @@ def display_students():
             messagebox.showinfo("Students", "\n".join([str(student) for student in students]))
     except mysql.connector.Error as error:
         messagebox.showerror("Error", f"Failed to fetch student records: {error}")
+
+def update_student():
+    student_id = student_id_entry.get()
+    first_name = first_name_entry.get()
+    last_name = last_name_entry.get()
+    email = email_entry.get()
+    
+    if not (student_id and first_name and last_name and email):
+        messagebox.showerror("Error", "All fields are required.")
+        return
+    
+    try:
+        connection = connect_to_database()
+        if connection:
+            cursor = connection.cursor()
+            cursor.execute("UPDATE students SET FirstName=%s, LastName=%s, Email=%s WHERE StudentID=%s", (first_name, last_name, email, student_id))
+            connection.commit()
+            messagebox.showinfo("Success", "Student record updated successfully.")
+            connection.close()
+    except mysql.connector.Error as error:
+        messagebox.showerror("Error", f"Failed to update student record: {error}")
