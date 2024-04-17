@@ -120,3 +120,15 @@ def insert_grade():
             connection.close()
     except mysql.connector.Error as error:
         messagebox.showerror("Error", f"Failed to insert grade record: {error}")
+
+def display_grades():
+    try:
+        connection = connect_to_database()
+        if connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT * FROM grades")
+            grades = cursor.fetchall()
+            connection.close()
+            messagebox.showinfo("Grades", "\n".join([str(grade) for grade in grades]))
+    except mysql.connector.Error as error:
+        messagebox.showerror("Error", f"Failed to fetch grade records: {error}")
