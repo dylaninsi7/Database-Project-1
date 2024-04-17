@@ -7,7 +7,7 @@ password = None
 def get_password():
     global password
     if password is None:
-        password = simpledialog.askstring("Password", "Enter database password:", show='*')
+        password = simpledialog.askstring("Password", "Enter your database password:", show='*')
     return password
 
 def connect_to_database():
