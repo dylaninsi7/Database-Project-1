@@ -49,3 +49,14 @@ def insert_student():
     except mysql.connector.Error as error:
         messagebox.showerror("Error", f"Failed to insert student record: {error}")
 
+def display_students():
+    try:
+        connection = connect_to_database()
+        if connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT * FROM students")
+            students = cursor.fetchall()
+            connection.close()
+            messagebox.showinfo("Students", "\n".join([str(student) for student in students]))
+    except mysql.connector.Error as error:
+        messagebox.showerror("Error", f"Failed to fetch student records: {error}")
