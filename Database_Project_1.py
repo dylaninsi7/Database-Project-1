@@ -99,3 +99,24 @@ def delete_student():
             connection.close()
     except mysql.connector.Error as error:
         messagebox.showerror("Error", f"Failed to delete student record: {error}")
+
+def insert_grade():
+    grade_id = grade_id_entry.get()
+    grade = grade_entry.get()
+    student_id = student_id_grade_entry.get()
+    course_id = course_id_grade_entry.get()
+    
+    if not (grade_id and grade and student_id and course_id):
+        messagebox.showerror("Error", "All fields are required.")
+        return
+    
+    try:
+        connection = connect_to_database()
+        if connection:
+            cursor = connection.cursor()
+            cursor.execute("INSERT INTO grades (GradeID, Grade, StudentID, CourseID) VALUES (%s, %s, %s, %s)", (grade_id, grade, student_id, course_id))
+            connection.commit()
+            messagebox.showinfo("Success", "Grade record inserted successfully.")
+            connection.close()
+    except mysql.connector.Error as error:
+        messagebox.showerror("Error", f"Failed to insert grade record: {error}")
