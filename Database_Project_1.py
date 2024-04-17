@@ -193,3 +193,14 @@ def insert_course():
     except mysql.connector.Error as error:
         messagebox.showerror("Error", f"Failed to insert course record: {error}")
 
+def display_courses():
+    try:
+        connection = connect_to_database()
+        if connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT * FROM courses")
+            courses = cursor.fetchall()
+            connection.close()
+            messagebox.showinfo("Courses", "\n".join([str(course) for course in courses]))
+    except mysql.connector.Error as error:
+        messagebox.showerror("Error", f"Failed to fetch course records: {error}")
