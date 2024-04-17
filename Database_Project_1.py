@@ -243,3 +243,38 @@ def delete_course():
             connection.close()
     except mysql.connector.Error as error:
         messagebox.showerror("Error", f"Failed to delete course record: {error}")
+
+root = tk.Tk()
+root.title("Student Database Application")
+
+student_id_label = tk.Label(root, text="Student ID:")
+student_id_label.grid(row=0, column=0, padx=10, pady=5)
+student_id_entry = tk.Entry(root)
+student_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+first_name_label = tk.Label(root, text="First Name:")
+first_name_label.grid(row=1, column=0, padx=10, pady=5)
+first_name_entry = tk.Entry(root)
+first_name_entry.grid(row=1, column=1, padx=10, pady=5)
+
+last_name_label = tk.Label(root, text="Last Name:")
+last_name_label.grid(row=2, column=0, padx=10, pady=5)
+last_name_entry = tk.Entry(root)
+last_name_entry.grid(row=2, column=1, padx=10, pady=5)
+
+email_label = tk.Label(root, text="Email:")
+email_label.grid(row=3, column=0, padx=10, pady=5)
+email_entry = tk.Entry(root)
+email_entry.grid(row=3, column=1, padx=10, pady=5)
+
+insert_student_button = tk.Button(root, text="Insert Student", command=insert_student)
+insert_student_button.grid(row=4, column=0, padx=10, pady=5)
+
+display_students_button = tk.Button(root, text="Display Students", command=display_students)
+display_students_button.grid(row=4, column=1, padx=10, pady=5)
+
+update_student_button = tk.Button(root, text="Update Student", command=update_student)
+update_student_button.grid(row=5, column=0, padx=10, pady=5)
+
+delete_student_button = tk.Button(root, text="Delete Student", command=delete_student)
+delete_student_button.grid(row=5, column=1, padx=10, pady=5)
